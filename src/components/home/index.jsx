@@ -1,37 +1,61 @@
 import './App.css';
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import { Button } from '../buttons';
 
 export const Home = () => {
+
+  const[dateCurrent, setDateCurrent] = useState([]);
+  const[dateFind, setDateFind] = useState('');
+
+  // useEffect(() => {
+  //   AssingDateTimeCurrent();
+  // }, [dateCurrent]);
+
+  const AssingDateTimeCurrent = () => {        
+    var date = new Date();    
+    
+    //var dateInstance = `Date: ${date.toLocaleDateString()} Time: ${date.toLocaleTimeString()}`;
+
+    setDateCurrent(dateCurrent => 
+      [
+        ...dateCurrent, 
+        `Date: ${date.toLocaleDateString()} Time: ${date.toLocaleTimeString()}`
+      ]
+    );
+  };
+  
+  const SearchValue = (event) => {
+
+    console.log('Value e: ', event.target.value);
+
+    setDateFind(dateCurrent.at(parseInt(event.target.value)));
+  };
+
   return (
     <>
-      <Button 
-        textDisplay={'Clique aqui'}
-      />
+      <button onClick={AssingDateTimeCurrent}>++</button>
+
       <div>
         <p>Pesquise</p>
-        <input></input>
+        <input type='text' onChange={SearchValue}></input>
+        <input type='submit' value='Search' />
       </div>
-      <Button 
-        textDisplay={'Reiniciar'}
-      />
+      <p>
+        {dateFind === undefined ?
+          'Value founded: não encontrado' :
+          `Value founded: ${dateFind}`
+        }
+      </p>
+      <>
+        {dateCurrent.map((item, index) => {
+          return (
+            <div>
+              <i>{`Index: ${index}`}</i>
+              <strong>{` - ${item}`}</strong> 
+            </div>
+          )
+        })}
+      </>
     </>
   );
 };
-
-// <div className="App">
-//   <header className="App-header">
-//     <img src={logo} className="App-logo" alt="logo" />
-//     <p>
-//       Edit <code>src/App.js</code> and save to reload.
-//     </p>
-//     <a
-//       className="App-link"
-//       href="https://reactjs.org"
-//       target="_blank"
-//       rel="noopener noreferrer"
-//     >
-//       Learn React
-//     </a>
-//   </header>
-// </div>
