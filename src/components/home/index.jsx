@@ -1,7 +1,8 @@
 import './App.css';
 import { React, useState } from 'react';
 import { Message } from '../message';
-
+import { Button } from '../buttons';
+ 
 export const Home = () => {
 
   const[dateCurrent, setDateCurrent] = useState([]);
@@ -19,7 +20,8 @@ export const Home = () => {
   };
   
   const ResetList = () => {
-    setDateCurrent([]);
+    console.log('Chamando função');
+    //setDateCurrent([]);
   };
 
   const SearchValue = (event) => {
@@ -41,7 +43,17 @@ export const Home = () => {
       <Message 
         dateFind={dateFind}
       />
-      <button onClick={ResetList} >RESET</button>
+      <>
+      <Button 
+        textDisplay={'RESET'} 
+        onClick={() => { ResetList() }}             
+      />
+      </>
+      {/* <Button 
+        textDisplay={'RESET'}
+        onClick={() => ResetList()}
+      /> */}
+      {/* <button onClick={ResetList} >RESET</button> */}
       <>
         {dateCurrent.map((item, index) => {
           return (
