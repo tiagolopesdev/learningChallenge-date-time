@@ -1,5 +1,6 @@
 import './App.css';
 import { React, useState } from 'react';
+import { Message } from '../message';
 
 export const Home = () => {
 
@@ -37,12 +38,9 @@ export const Home = () => {
         <input type='text' onChange={SearchValue}></input>
         <input type='submit' value='Search' />
       </div>
-      <p>
-        {dateFind === undefined ?
-          'Value founded: não encontrado' :
-          `Value founded: ${dateFind}`
-        }
-      </p>
+      <Message 
+        dateFind={dateFind}
+      />
       <button onClick={ResetList} >RESET</button>
       <>
         {dateCurrent.map((item, index) => {
