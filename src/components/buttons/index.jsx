@@ -1,7 +1,7 @@
 import React from "react";
 
-export const Button = ({textDisplay}) => {
+export const Button = ({textDisplay, ...props}) => {
     return (
-        <button>{textDisplay}</button>
+        <button {...props} >{textDisplay}</button>
     );
 };
