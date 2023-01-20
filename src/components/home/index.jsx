@@ -1,20 +1,13 @@
 import './App.css';
-import { React, useState, useEffect } from 'react';
-import { Button } from '../buttons';
+import { React, useState } from 'react';
 
 export const Home = () => {
 
   const[dateCurrent, setDateCurrent] = useState([]);
   const[dateFind, setDateFind] = useState('');
 
-  // useEffect(() => {
-  //   AssingDateTimeCurrent();
-  // }, [dateCurrent]);
-
   const AssingDateTimeCurrent = () => {        
     var date = new Date();    
-    
-    //var dateInstance = `Date: ${date.toLocaleDateString()} Time: ${date.toLocaleTimeString()}`;
 
     setDateCurrent(dateCurrent => 
       [
@@ -24,6 +17,10 @@ export const Home = () => {
     );
   };
   
+  const ResetList = () => {
+    setDateCurrent([]);
+  };
+
   const SearchValue = (event) => {
 
     console.log('Value e: ', event.target.value);
@@ -46,6 +43,7 @@ export const Home = () => {
           `Value founded: ${dateFind}`
         }
       </p>
+      <button onClick={ResetList} >RESET</button>
       <>
         {dateCurrent.map((item, index) => {
           return (
