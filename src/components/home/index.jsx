@@ -2,6 +2,7 @@ import './App.css';
 import { React, useState } from 'react';
 import { Message } from '../message';
 import { Button } from '../buttons';
+import { Input } from '../input';
  
 export const Home = () => {
 
@@ -37,16 +38,14 @@ export const Home = () => {
         textDisplay={'ADD TIME'}
         onClick={AssingDateTimeCurrent}
       />
-      <div>
-        <p>Pesquise</p>
-        <input type='text' onChange={SearchValue}></input>
-        <input type='submit' value='Search' />
-      </div>
+      <p>Pesquise</p>
+      <Input 
+        type={'text'}
+        onChange={SearchValue}
+      />
       <Message 
         dateFind={dateFind}
       />
-      <>
-      </>
       <Button 
         textDisplay={'RESET'}
         onClick={() => ResetList()}
