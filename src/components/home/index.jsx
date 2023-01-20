@@ -20,21 +20,23 @@ export const Home = () => {
   };
   
   const ResetList = () => {
-    console.log('Chamando função');
-    //setDateCurrent([]);
+    setDateCurrent([]);
   };
 
   const SearchValue = (event) => {
-
-    console.log('Value e: ', event.target.value);
-
-    setDateFind(dateCurrent.at(parseInt(event.target.value)));
+    setDateFind(
+      event.target.value === '' ? 
+        '' : 
+        dateCurrent.at(parseInt(event.target.value))
+    );
   };
 
   return (
     <>
-      <button onClick={AssingDateTimeCurrent}>++</button>
-
+      <Button 
+        textDisplay={'ADD TIME'}
+        onClick={AssingDateTimeCurrent}
+      />
       <div>
         <p>Pesquise</p>
         <input type='text' onChange={SearchValue}></input>
@@ -44,20 +46,15 @@ export const Home = () => {
         dateFind={dateFind}
       />
       <>
-      <Button 
-        textDisplay={'RESET'} 
-        onClick={() => { ResetList() }}             
-      />
       </>
-      {/* <Button 
+      <Button 
         textDisplay={'RESET'}
         onClick={() => ResetList()}
-      /> */}
-      {/* <button onClick={ResetList} >RESET</button> */}
+      />
       <>
         {dateCurrent.map((item, index) => {
           return (
-            <div>
+            <div key={`${item}-${index}`}>
               <i>{`Index: ${index}`}</i>
               <strong>{` - ${item}`}</strong> 
             </div>
