@@ -1,5 +1,5 @@
 import './App.css';
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { Message } from '../message';
 import { Button } from '../buttons';
 import { Input } from '../input';
@@ -8,6 +8,12 @@ export const Home = () => {
 
   const[dateCurrent, setDateCurrent] = useState([]);
   const[dateFind, setDateFind] = useState('');
+  const[cleanList, setCleanList] = useState(false);
+
+  useEffect(() => {
+    console.log('Use effect on')
+    ResetList();
+  }, [cleanList]);
 
   const AssingDateTimeCurrent = () => {        
     var date = new Date();    
@@ -22,6 +28,7 @@ export const Home = () => {
   
   const ResetList = () => {
     setDateCurrent([]);
+    if(cleanList) setCleanList(false);
   };
 
   const SearchValue = (event) => {
@@ -48,7 +55,7 @@ export const Home = () => {
       />
       <Button 
         textDisplay={'RESET'}
-        onClick={() => ResetList()}
+        onClick={() => setCleanList(true) }
       />
       <>
         {dateCurrent.map((item, index) => {
