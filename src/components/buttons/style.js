@@ -18,5 +18,6 @@ export const ButtonStyle = styled.button`
     padding-left: 20px;
     padding-right: 20px;
     text-align: center;
+    margin: 0px 20px 0px 20px
 `;
 
