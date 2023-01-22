@@ -1,7 +1,8 @@
 import React from "react";
+import { ButtonStyle } from "./style";
 
 export const Button = ({textDisplay, ...props}) => {
     return (
-        <button {...props} >{textDisplay}</button>
+        <ButtonStyle {...props} >{textDisplay}</ButtonStyle>
     );
 };
