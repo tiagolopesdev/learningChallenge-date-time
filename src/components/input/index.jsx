@@ -1,8 +1,9 @@
+import { InputStyle } from "./style";
 
 export const Input = (props) => {
 
     return(
-        <input type={props.type} {...props}/>
+        <InputStyle type={props.type} {...props}/>
     );
 }
 
