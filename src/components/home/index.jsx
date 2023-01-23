@@ -1,8 +1,8 @@
-import './App.css';
 import { React, useEffect, useState } from 'react';
 import { Message } from '../message';
 import { Button } from '../buttons';
 import { Input } from '../input';
+import { Body, BodySearch, ResultList, ItemList } from './style';
  
 export const Home = () => {
 
@@ -11,7 +11,6 @@ export const Home = () => {
   const[cleanList, setCleanList] = useState(false);
 
   useEffect(() => {
-    console.log('Use effect on')
     ResetList();
   }, [cleanList]);
 
@@ -40,33 +39,39 @@ export const Home = () => {
   };
 
   return (
-    <>
-      <Button 
-        textDisplay={'ADD TIME'}
-        onClick={AssingDateTimeCurrent}
-      />
-      <p>Pesquise</p>
-      <Input 
-        type={'text'}
-        onChange={SearchValue}
-      />
+    <Body>
+      <div>
+        <Button 
+          textDisplay={'RESET'}
+          onClick={() => setCleanList(true) }
+        />
+        <Button 
+          textDisplay={'ADD TIME'}
+          onClick={AssingDateTimeCurrent}
+        />
+      </div>
+      <BodySearch>
+        <p>Pesquise</p>
+        <Input 
+          type={'text'}
+          onChange={SearchValue}
+        />
+      </BodySearch>
       <Message 
         dateFind={dateFind}
       />
-      <Button 
-        textDisplay={'RESET'}
-        onClick={() => setCleanList(true) }
-      />
-      <>
-        {dateCurrent.map((item, index) => {
-          return (
-            <div key={`${item}-${index}`}>
-              <i>{`Index: ${index}`}</i>
-              <strong>{` - ${item}`}</strong> 
-            </div>
-          )
-        })}
-      </>
-    </>
+      <ResultList>
+        <>
+          {dateCurrent.map((item, index) => {
+            return (
+              <ItemList key={`${item}-${index}`}>
+                <i>{`Index: ${index}`}</i>
+                <strong>{` - ${item}`}</strong> 
+              </ItemList>
+            )
+          })}
+        </>
+      </ResultList>
+    </Body>
   );
 };
